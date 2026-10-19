@@ -1,0 +1,176 @@
+
+
+
+.gsap-cursor-glow {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100000;
+  width: 24px !important;
+  height: 24px !important;
+  border-radius: 50%;
+  pointer-events: none;
+
+  background: radial-gradient(
+    circle,
+    rgba(55, 20, 85, 0.75) 0%,
+    rgba(80, 35, 110, 0.4) 40%,
+    transparent 75%
+  );
+
+  filter: blur(1px);
+  mix-blend-mode: normal;
+}
+
+.gsap-cursor-sparkle {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100001;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  pointer-events: none;
+
+  background: #4b246e;
+  box-shadow:
+    0 0 8px rgba(65, 25, 95, 0.9),
+    0 0 18px rgba(100, 55, 135, 0.65);
+}
+
+.gsap-cursor-sparkle::before {
+  content: "";
+  position: absolute;
+  inset: -3px;
+  background: inherit;
+  clip-path: polygon(
+    50% 0%,
+    63% 37%,
+    100% 50%,
+    63% 63%,
+    50% 100%,
+    37% 63%,
+    0% 50%,
+    37% 37%
+  );
+}
+
+
+
+/* Character image remains a flat 2D illustration */
+#pipImage {
+  transform-origin: 50% 65%;
+  backface-visibility: hidden;
+}
+
+/* Respect users who prefer less motion */
+@media (prefers-reduced-motion: reduce) {
+  .gsap-cursor-glow,
+  .gsap-cursor-sparkle {
+    display: none !important;
+  }
+}
+
+
+
+
+.gsap-glow-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 99997;
+  pointer-events: none;
+  opacity: 0;
+  mix-blend-mode: multiply;
+}
+
+
+
+
+/* ================================================
+   PIP FACE TRACKER — CLEAN EYE-GLINT LAYER
+   The matching source asset has the original fixed glints removed,
+   so these are the only glints visible and they can follow the cursor.
+   ================================================ */
+
+#pipFigure {
+  perspective: 900px;
+}
+
+.pip-art-layer {
+  position: relative;
+  display: block;
+  width: 100%;
+  transform-origin: 50% 55%;
+  perspective: 900px;
+  z-index: 1;
+  will-change: transform;
+}
+
+.pip-art-layer #pipImage {
+  display: block;
+  width: 100%;
+  height: auto;
+  position: relative;
+  z-index: 1;
+  transform-origin: 50% 65%;
+  backface-visibility: hidden;
+}
+
+.pip-face-tracker {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 4;
+  pointer-events: none;
+  overflow: visible;
+}
+
+/* Coordinates measured from the 682 × 1024 original artwork. */
+.pip-eye-glint {
+  position: absolute;
+  display: block;
+  left: 42.08%;
+  top: 43.14%;
+  width: 1.75%;
+  height: 1.2%;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    #fffdf1 0%,
+    #fff8d4 25%,
+    #ffe6a0 48%,
+    rgba(255, 204, 104, 0.92) 67%,
+    rgba(255, 185, 72, 0) 100%
+  );
+  filter: drop-shadow(0 0 2px rgba(255, 220, 143, 0.9));
+  box-shadow: 0 0 5px rgba(255, 194, 77, 0.6);
+  pointer-events: none;
+}
+
+.pip-eye-right {
+  left: 64.37%;
+  top: 39.16%;
+}
+
+/* Tiny playful greeting that appears on hover. */
+.pip-hover-smile {
+  position: absolute;
+  left: 77%;
+  top: 42%;
+  display: grid;
+  place-items: center;
+  width: clamp(28px, 7.5%, 40px);
+  aspect-ratio: 1;
+  border: 1px solid rgba(255, 255, 255, 0.96);
+  border-radius: 50%;
+  color: #a34063;
+  background: rgba(255, 250, 246, 0.96);
+  box-shadow: 0 8px 20px rgba(163, 64, 99, 0.18);
+  font: 24px/1 system-ui, sans-serif;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pip-art-layer { will-change: auto; }
+}

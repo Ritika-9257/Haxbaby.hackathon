@@ -1,0 +1,832 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#fff8f1">
+  <meta name="description" content="Step into Pip's Dream World: meet a tiny dream engineer, explore gentle nightlights, listen to lullabies, and follow a bedtime story.">
+  <title>Pip's Dream World — A Tiny Portfolio</title>
+  <link rel="icon" href="assets/pip-portrait.webp" type="image/webp">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="origin-story.css">
+  <link rel="stylesheet" href="gsap-effects.css">
+  <link rel="stylesheet" href="lullaby-lab.css">
+  <link rel="stylesheet" href="interactive-storybook.css">
+  <script src="script.js" defer></script>
+  <script src="origin-story.js" defer></script>
+  <script src="lullaby-lab.js" defer></script>
+  <script src="interactive-storybook.js" defer></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.14.2/gsap.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.14.2/ScrollTrigger.min.js" defer></script>
+<script src="gsap-effects.js" defer></script>
+</head>
+<body id="pageTop" data-theme="day">
+  <a class="skip-link" href="#main">Skip to the dream world</a>
+
+  <!-- Responsive, native animated intro. Exactly two star characters; no moon. -->
+  <section class="intro-screen" id="introScreen" aria-label="Pip's Dream World is waking up">
+    <div class="intro-mobile-scene" aria-hidden="true">
+      <div class="intro-haze intro-haze-one"></div>
+      <div class="intro-haze intro-haze-two"></div>
+      <div class="mobile-cloud mobile-cloud-a"></div>
+      <div class="mobile-cloud mobile-cloud-b"></div>
+      <div class="mobile-cloud mobile-cloud-c"></div>
+      <div class="mobile-cloud mobile-cloud-d"></div>
+      <div class="intro-frame"></div>
+      <svg class="mobile-dream-path" viewBox="0 0 1200 500" preserveAspectRatio="none">
+        <defs>
+          <linearGradient id="pathGlow" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0" stop-color="#fff8dc"/>
+            <stop offset=".42" stop-color="#ffd985"/>
+            <stop offset=".72" stop-color="#f3c4d9"/>
+            <stop offset="1" stop-color="#e7dcff"/>
+          </linearGradient>
+        </defs>
+        <path class="dream-path-shadow" d="M-35 375 C 135 330, 170 190, 330 205 S 495 380, 625 256 S 840 120, 1000 190 S 1130 205, 1240 105"/>
+        <path class="dream-path-line" d="M-35 375 C 135 330, 170 190, 330 205 S 495 380, 625 256 S 840 120, 1000 190 S 1130 205, 1240 105"/>
+        <path class="dream-path-dashes" d="M-35 375 C 135 330, 170 190, 330 205 S 495 380, 625 256 S 840 120, 1000 190 S 1130 205, 1240 105"/>
+      </svg>
+      <div class="intro-dust" aria-hidden="true">
+        <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+      </div>
+      <div class="mobile-star mama-star" aria-label="Mama Star">
+        <svg viewBox="0 0 100 100" role="img" aria-label="Mama Star smiling">
+          <defs>
+            <linearGradient id="mamaGold" x1="0" y1="0" x2=".9" y2="1"><stop stop-color="#fffbe0"/><stop offset=".32" stop-color="#ffed9e"/><stop offset=".7" stop-color="#ffd06d"/><stop offset="1" stop-color="#efa94d"/></linearGradient>
+            <radialGradient id="mamaShine" cx=".28" cy=".2" r=".7"><stop stop-color="#fff" stop-opacity=".78"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>
+            <filter id="starShadow" x="-30%" y="-30%" width="160%" height="170%"><feDropShadow dx="0" dy="5" stdDeviation="4" flood-color="#ba8851" flood-opacity=".24"/></filter>
+          </defs>
+          <g filter="url(#starShadow)">
+            <path d="M50 5 62.4 31.2 91.2 34.4 70 54.1 75.8 82.5 50 68.1 24.2 82.5 30 54.1 8.8 34.4 37.6 31.2Z" fill="url(#mamaGold)" stroke="#fff9e0" stroke-width="3" stroke-linejoin="round"/>
+            <path d="M50 8 61 32 86 35 68 54 73 78 50 66 27 78 32 54 14 36 39 32Z" fill="url(#mamaShine)"/>
+            <ellipse cx="26" cy="59" rx="7.5" ry="4.8" fill="#f3a1a8" opacity=".83"/><ellipse cx="74" cy="59" rx="7.5" ry="4.8" fill="#f3a1a8" opacity=".83"/>
+            <g class="star-eyes"><ellipse cx="38" cy="47" rx="4.2" ry="6" fill="#684638"/><ellipse cx="62" cy="47" rx="4.2" ry="6" fill="#684638"/><circle cx="39.4" cy="45" r="1.5" fill="#fff5d6"/><circle cx="63.4" cy="45" r="1.5" fill="#fff5d6"/></g>
+            <path class="star-blink" d="M32 48 Q38 54 44 48 M56 48 Q62 54 68 48" fill="none" stroke="#684638" stroke-width="3.1" stroke-linecap="round"/>
+            <path d="M42 61 Q50 69 58 61" fill="none" stroke="#794638" stroke-width="3.2" stroke-linecap="round"/>
+            <ellipse cx="36" cy="24" rx="12" ry="5" fill="#fff" opacity=".35" transform="rotate(-28 36 24)"/>
+          </g>
+        </svg>
+      </div>
+      <div class="mobile-star baby-star" aria-label="Baby Star">
+        <svg viewBox="0 0 100 100" role="img" aria-label="Baby Star smiling">
+          <defs><linearGradient id="babyGold" x1="0" y1="0" x2=".9" y2="1"><stop stop-color="#fffbe0"/><stop offset=".4" stop-color="#ffed9f"/><stop offset=".76" stop-color="#ffd373"/><stop offset="1" stop-color="#f2b255"/></linearGradient></defs>
+          <path d="M50 5 62.4 31.2 91.2 34.4 70 54.1 75.8 82.5 50 68.1 24.2 82.5 30 54.1 8.8 34.4 37.6 31.2Z" fill="url(#babyGold)" stroke="#fff9e0" stroke-width="3" stroke-linejoin="round"/>
+          <ellipse cx="26" cy="59" rx="7" ry="4.4" fill="#f3a1a8" opacity=".86"/><ellipse cx="74" cy="59" rx="7" ry="4.4" fill="#f3a1a8" opacity=".86"/>
+          <g class="star-eyes"><ellipse cx="38" cy="47" rx="4.2" ry="6" fill="#684638"/><ellipse cx="62" cy="47" rx="4.2" ry="6" fill="#684638"/><circle cx="39.4" cy="45" r="1.4" fill="#fff5d6"/><circle cx="63.4" cy="45" r="1.4" fill="#fff5d6"/></g>
+          <path class="star-blink" d="M32 48 Q38 54 44 48 M56 48 Q62 54 68 48" fill="none" stroke="#684638" stroke-width="3.1" stroke-linecap="round"/>
+          <path d="M42 61 Q50 69 58 61" fill="none" stroke="#794638" stroke-width="3.2" stroke-linecap="round"/>
+          <ellipse cx="36" cy="24" rx="12" ry="5" fill="#fff" opacity=".33" transform="rotate(-28 36 24)"/>
+        </svg>
+      </div>
+      <div class="mobile-progress-wrap">
+        <div class="progress-caption"><span>MAKING A LITTLE MAGIC</span><span id="introProgressNumber">0%</span></div>
+        <div class="mobile-progress" id="introProgressBar" role="progressbar" aria-label="Loading Pip's Dream World" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><span id="introProgressFill"></span></div>
+        <p id="introLoadingMessage">Loading our little dream...</p>
+        <span class="tiny-hearts" aria-hidden="true">♡　·　♡</span>
+      </div>
+    </div>
+    <button class="skip-intro" id="skipIntro" type="button">Skip intro <span aria-hidden="true">→</span></button>
+  </section>
+
+  <canvas id="fluidCanvas" class="fluid-canvas" aria-hidden="true"></canvas>
+  <div class="soft-grain" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <a class="brand-cloud" href="#home" aria-label="Pip's Dream World home">
+      <span class="brand-star" aria-hidden="true">✦</span>
+      <span class="brand-word">Pip</span>
+      <span class="brand-subtitle">Junior Dream Engineer</span>
+      <span class="brand-hearts" aria-hidden="true">♥ ♥</span>
+    </a>
+
+    <button class="menu-toggle" id="menuToggle" type="button" aria-expanded="false" aria-controls="primaryNav" aria-label="Open navigation">☰</button>
+    <nav class="primary-nav" id="primaryNav" aria-label="Main navigation">
+      <a class="nav-link active" href="#home">Home</a>
+      <a class="nav-link" href="#about">About</a>
+      <a class="nav-link" href="#projects">Projects</a>
+      <a class="nav-link" href="#lullaby-lab">Lullabies</a>
+      <a class="nav-link" href="#pip-origin-story">Story</a>
+      <a class="nav-link" href="#toybox">Toybox</a>
+    </nav>
+    <div class="header-controls">
+      <button class="control-pill" id="soundToggle" type="button" aria-pressed="false" aria-label="Turn interface sounds on"><span class="control-icon" aria-hidden="true">♫</span><span id="soundLabel">Sound off</span><span class="sound-bars" aria-hidden="true"><i></i><i></i><i></i></span></button>
+      <button class="theme-toggle" id="themeToggle" type="button" aria-pressed="false" aria-label="Switch to twilight mode" title="Switch to twilight mode"><span id="themeIcon" aria-hidden="true">☾</span></button>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero section-shell" id="home" aria-labelledby="heroTitle">
+      <div class="hero-heading">
+        <p class="eyebrow"><span class="eyebrow-dot"></span> A little portfolio from Midnight Nursery <span class="eyebrow-dot"></span></p>
+        <h1 id="heroTitle">Welcome to <span>Pip's Dream World</span></h1>
+        <p class="hero-intro">Small hands. Big dreams. A sprinkle of bedtime magic.</p>
+      </div>
+
+      <div class="hero-stage">
+        <aside class="hero-doodle-column hero-doodle-left" aria-hidden="true">
+          <span class="hero-doodle doodle-cloud doodle-large">☁</span>
+          <span class="hero-doodle doodle-heart doodle-medium">♡</span>
+          <span class="hero-doodle doodle-flower doodle-small">✿</span>
+          <span class="hero-doodle doodle-spark doodle-medium">✧</span>
+          <span class="hero-doodle doodle-cloud doodle-small">☁</span>
+        </aside>
+        
+
+        <figure class="pip-figure" id="pipFigure">
+          <div class="figure-glow" aria-hidden="true"></div>
+          <img class="pip-main-image" id="pipImage" src="assets/pip-main.webp" alt="Pip, a gentle skull-faced baby in a starry sleeping cap and pink bow, sitting on a fluffy cloud with a glowing lantern and a tiny unicorn music box." width="682" height="1024" fetchpriority="high">
+          <button class="hit-zone hit-cap" type="button" data-panel="work" aria-label="Scroll to projects from Pip's nightcap"><span class="hotspot-hint">Projects</span></button>
+          <button class="hit-zone hit-face" type="button" data-panel="about" aria-label="Scroll to About Pip from his face"><span class="hotspot-hint">About</span></button>
+          <button class="hit-zone hit-moon" type="button" data-panel="story" aria-label="Scroll to Pip's story from the moon in his illustration"><span class="hotspot-hint">Story</span></button>
+          <button class="hit-zone hit-lantern" type="button" data-panel="lantern" aria-label="Scroll to nightlights from Pip's lantern"><span class="hotspot-hint">Nightlights</span></button>
+          <button class="hit-zone hit-musicbox" type="button" data-panel="lullaby" aria-label="Scroll to lullabies from Pip's music box"><span class="hotspot-hint">Lullabies</span></button>
+          <figcaption>“I build the dreams you fall asleep inside.”</figcaption>
+        </figure>
+
+        <aside class="hero-doodle-column hero-doodle-right" aria-hidden="true">
+          <span class="hero-doodle doodle-butterfly doodle-medium">❀</span>
+          <span class="hero-doodle doodle-cloud doodle-large">☁</span>
+          <span class="hero-doodle doodle-music doodle-small">♫</span>
+          <span class="hero-doodle doodle-heart doodle-small">♡</span>
+          <span class="hero-doodle doodle-flower doodle-medium">✿</span>
+        </aside>
+      </div>
+
+      <a class="scroll-cue" href="#about"><span class="scroll-mouse" aria-hidden="true"><i></i></span><span>Scroll for more magic</span><span aria-hidden="true">⌄</span></a>
+      <div class="floating-doodle doodle-one" aria-hidden="true">✧</div>
+      <div class="floating-doodle doodle-two" aria-hidden="true">♡</div>
+      <div class="floating-doodle doodle-three" aria-hidden="true">✦</div>
+    </section>
+
+    <section class="about-section section-shell section-block" id="about" aria-labelledby="aboutTitle">
+      <div class="section-heading">
+        <p class="eyebrow">A tiny introduction</p>
+        <h2 id="aboutTitle">A little baby with a <span>big bedtime job</span></h2>
+        <p>Meet the dream-maker behind the glow.</p>
+      </div>
+      <div class="about-card frosted-card">
+        <div class="about-stamp" aria-hidden="true"><span>✦</span><small>Dream<br>approved</small></div>
+        <div class="about-copy">
+          <p class="mini-label">HELLO, LITTLE DREAMER!</p>
+          <h3>I'm Pip — the Junior Dream Engineer.</h3>
+          <p class="pip-canon-appearance">I'm a cute baby with a smooth, round skull face, huge soft eye sockets with cozy glowing pinpricks of light, a tiny crooked smile, and a starry bedtime nightcap with a little pink bow. Cute and friendly, never scary.</p>
+          <p>I work at Midnight Nursery, designing dreams, lullabies, nightlights, and bedtime stories to help the neighborhood’s little ghosts and creatures fall asleep.</p>
+          <p class="pip-personality">I'm curious, sleepy, a little clumsy, and easily delighted. I giggle at everything and hate silence.</p>
+          <p class="pip-tagline">“I build the dreams you fall asleep inside.”</p>
+          <div class="trait-row"><span>☁ Curious</span><span>♫ Sleepy</span><span>✧ Easily delighted</span></div>
+        </div>
+        <div class="about-illustration"><img src="assets/pip_avatar_cloud.png" alt="Pip waving hello from a fluffy cloud" loading="lazy"></div>
+      </div>
+    </section>
+
+    <section class="projects-section section-shell section-block" id="projects" aria-labelledby="projectsTitle">
+      <div class="section-heading">
+        <p class="eyebrow">Made with stardust</p>
+        <h2 id="projectsTitle">Little things made for <span>bigger dreams</span></h2>
+        <p>Four little creations from Pip's dream workshop.</p>
+      </div>
+      <div class="project-grid" aria-label="Pip's four selected projects">
+        <article class="project-card project-pink" id="project-lullaby" data-task="lullaby">
+          <div class="project-art"><img src="assets/pip-musicbox.webp" alt="A pastel music box with a tiny unicorn figurine" loading="lazy"><span class="art-badge">01 · Sound</span></div>
+          <div class="project-info"><p class="mini-label">THE LULLABY LAB</p><h3>A song for sleepy eyes</h3><p>Gentle tones, tiny twinkles, and a little melody for winding down.</p><button class="text-link" type="button" data-panel="lullaby">Listen to a lullaby <span aria-hidden="true">↓</span></button></div>
+        </article>
+        <article class="project-card project-gold" id="project-nightlights" data-task="nightlights">
+          <div class="project-art"><img src="assets/pip-lantern.webp" alt="A glowing golden dream lantern decorated with stars" loading="lazy"><span class="art-badge">02 · Light</span></div>
+          <div class="project-info"><p class="mini-label">NIGHTLIGHT COLLECTION</p><h3>A glow that says you're safe</h3><p>Small friendly lights to turn a dark corner into a cozy nook.</p><button class="text-link" type="button" data-panel="lantern">Choose a glow <span aria-hidden="true">↓</span></button></div>
+        </article>
+        <article class="project-card project-lilac" id="project-toys" data-task="toys">
+          <div class="project-art blocks-project-art" aria-label="Colorful soft toy blocks and a tiny rattle illustration">
+            <span class="toy-block-art block-art-one">★</span><span class="toy-block-art block-art-two">♥</span><span class="toy-block-art block-art-three">☁</span><span class="rattle-art"><i></i><b>✦</b></span>
+            <span class="art-badge">03 · Play</span>
+          </div>
+          <div class="project-info"><p class="mini-label">RATTLE &amp; BLOCK TOYS</p><h3>Little hands, big ideas</h3><p>Friendly rattles and soft blocks made for stacking, shaking, and trying again.</p><button class="text-link" type="button" data-panel="toys">Come play <span aria-hidden="true">↓</span></button></div>
+        </article>
+        <article class="project-card project-story" id="project-storybook" data-task="storybook">
+          <div class="project-art book-project-art" aria-label="A tiny bedtime storybook with golden stars">
+            <div class="storybook-book-cover"><span class="book-moon">☾</span><span class="book-stars">✦ ✧</span><strong>Little<br>Dreams</strong><small>a bedtime book</small></div>
+            <span class="art-badge">04 · Story</span>
+          </div>
+          <div class="project-info">
+  <p class="mini-label">BEDTIME STORYBOOK · 10 TALES</p>
+
+  <h3>Little Dreams, Big Adventures</h3>
+
+  <p>
+    Ten tiny bedtime stories filled with sleepy stars,
+    friendly creatures, magical adventures, and sweet dreams.
+    Which little story will Pip choose tonight?
+  </p>
+
+  <button
+    class="text-link"
+    type="button"
+    id="openBedtimeStory"
+  >
+    Read a random story <span aria-hidden="true">✦</span>
+  </button>
+</div>
+</article>
+      </div>
+    </section>
+
+    <section class="project-feature-section section-shell section-block" id="lullaby-lab" data-task-detail="lullaby" aria-labelledby="lullabyLabTitle">
+      <div class="section-heading">
+        <p class="eyebrow">Project 01 · The Lullaby Lab</p>
+        <h2 id="lullabyLabTitle">A little song for <span>sleepy eyes</span></h2>
+        <p>Press play for genuine celestial lullabies, soothing ambient nightscapes, and a restful bedtime sleep timer.</p>
+      </div>
+
+      <div class="lullaby-lab-container">
+        <!-- Left: Rocking Cradle & Master Player Card -->
+        <div class="lullaby-player-card">
+          <!-- Sky background -->
+          <div class="lullaby-sky-bg" aria-hidden="true">
+            <span class="sky-star st-1">✦</span>
+            <span class="sky-star st-2">✧</span>
+            <span class="sky-star st-3">⋆</span>
+            <span class="sky-star st-4">✦</span>
+            <span class="sky-star st-5">✧</span>
+            <span class="sky-cloud cl-1">☁</span>
+            <span class="sky-cloud cl-2">☁</span>
+          </div>
+
+          <!-- Cradle Stage -->
+          <div class="cradle-stage" id="cradleStage">
+            <div class="cradle-glow" aria-hidden="true"></div>
+            <img src="assets/pip-musicbox.webp" alt="Pip's pastel unicorn music box" class="cradle-musicbox-img" loading="lazy">
+            <div class="cradle-burst" aria-hidden="true">
+              <span class="burst-note n-1">♪</span>
+              <span class="burst-note n-2">♫</span>
+              <span class="burst-note n-3">✨</span>
+            </div>
+          </div>
+
+          <!-- Active Track Info -->
+          <div class="active-track-info">
+            <span class="track-badge-pill" id="activeTrackBadge">Music Box · 432 Hz</span>
+            <h3 class="active-track-title" id="activeTrackTitle">Starlight Music Box</h3>
+            <p class="active-track-desc" id="activeTrackDesc">A celestial music box melody that guided Pip’s cradle through the stars.</p>
+          </div>
+
+          <!-- Visualizer Waveform -->
+          <div class="lullaby-wave-bars" id="lullabyWaveBars" aria-hidden="true">
+            <span class="wave-bar b-1"></span>
+            <span class="wave-bar b-2"></span>
+            <span class="wave-bar b-3"></span>
+            <span class="wave-bar b-4"></span>
+            <span class="wave-bar b-5"></span>
+            <span class="wave-bar b-6"></span>
+            <span class="wave-bar b-7"></span>
+            <span class="wave-bar b-8"></span>
+            <span class="wave-bar b-9"></span>
+            <span class="wave-bar b-10"></span>
+          </div>
+
+          <!-- Scrub Slider -->
+          <div class="lullaby-scrub-area">
+            <div class="scrub-time-row">
+              <span id="lullabyTimeElapsed">0:00</span>
+              <span id="lullabyTimeTotal">0:33</span>
+            </div>
+            <input type="range" class="lullaby-seek-range" id="lullabySeekRange" min="0" max="33" value="0" step="1" aria-label="Seek lullaby playback position">
+          </div>
+
+          <!-- Primary Controls -->
+          <div class="lullaby-controls-row">
+            <button type="button" class="player-icon-btn" id="prevLullabyTrack" aria-label="Previous lullaby track" title="Previous Track">⏮</button>
+            <button type="button" class="player-icon-btn player-master-btn" id="masterLullabyPlay" aria-label="Play lullaby" title="Play">▶</button>
+            <button type="button" class="player-icon-btn" id="nextLullabyTrack" aria-label="Next lullaby track" title="Next Track">⏭</button>
+            <button type="button" class="player-icon-btn repeat-btn is-active" id="repeatLullabyTrack" aria-label="Toggle repeat track" aria-pressed="true" title="Loop Track">🔁</button>
+          </div>
+
+          <!-- Secondary Controls: Volume & Sleep Timer -->
+          <div class="lullaby-sub-row">
+            <div class="vol-group">
+              <button type="button" class="vol-icon" id="lullabyMuteBtn" aria-label="Mute or unmute volume">🔊</button>
+              <input type="range" class="vol-slider" id="lullabyVolSlider" min="0" max="1" step="0.05" value="0.75" aria-label="Adjust lullaby volume">
+            </div>
+
+            <div class="timer-group">
+              <span aria-hidden="true">⏱️</span>
+              <select class="timer-select" id="lullabySleepTimer" aria-label="Set sleep timer">
+                <option value="0">Sleep Timer: Off</option>
+                <option value="5">5 Minutes</option>
+                <option value="15">15 Minutes</option>
+                <option value="30">30 Minutes</option>
+                <option value="45">45 Minutes</option>
+              </select>
+              <span class="countdown-badge" id="lullabyCountdownBadge" hidden>0:00</span>
+            </div>
+          </div>
+
+          <p class="lab-status-note" id="lullabyStatusNote" aria-live="polite">Music box is resting. Press play to begin.</p>
+        </div>
+
+        <!-- Right: Playlist & Ambient Soundscapes Mixer -->
+        <div class="lullaby-playlist-column">
+          <!-- Playlist Box -->
+          <div class="lullaby-box">
+            <div class="box-title-bar">
+              <h3>Bedtime Lullabies</h3>
+              <button type="button" class="custom-upload-pill" id="customAudioBtn">+ Add Custom Track</button>
+              <input type="file" id="customAudioUpload" accept="audio/mp3,audio/wav,audio/ogg" style="display:none">
+            </div>
+
+            <div class="track-items-stack" role="list">
+              <div class="track-card is-active-track" data-track-idx="0" role="listitem">
+                <button type="button" class="track-play-btn" aria-label="Play Starlight Music Box">▶</button>
+                <div class="track-meta">
+                  <div class="meta-title-line">
+                    <span class="t-name">Starlight Music Box</span>
+                    <span class="t-badge">432 Hz</span>
+                  </div>
+                  <p class="t-desc">Celestial music box melody drifting through the stars.</p>
+                </div>
+              </div>
+
+              <div class="track-card" data-track-idx="1" role="listitem">
+                <button type="button" class="track-play-btn" aria-label="Play Cradle in the Clouds">▶</button>
+                <div class="track-meta">
+                  <div class="meta-title-line">
+                    <span class="t-name">Cradle in the Clouds</span>
+                    <span class="t-badge">Celesta & Harp</span>
+                  </div>
+                  <p class="t-desc">Gentle celesta & harp arpeggios that cradle restless sleepers.</p>
+                </div>
+              </div>
+
+              <div class="track-card" data-track-idx="2" role="listitem">
+                <button type="button" class="track-play-btn" aria-label="Play Pip's Midnight Serenade">▶</button>
+                <div class="track-meta">
+                  <div class="meta-title-line">
+                    <span class="t-name">Pip's Midnight Serenade</span>
+                    <span class="t-badge">Slumber Chime</span>
+                  </div>
+                  <p class="t-desc">Classic Midnight Nursery hymn tuned to soothe night-fears.</p>
+                </div>
+              </div>
+
+              <div class="track-card" data-track-idx="3" role="listitem">
+                <button type="button" class="track-play-btn" aria-label="Play Moonlit Slumber Waltz">▶</button>
+                <div class="track-meta">
+                  <div class="meta-title-line">
+                    <span class="t-name">Moonlit Slumber Waltz</span>
+                    <span class="t-badge">Dream Waltz</span>
+                  </div>
+                  <p class="t-desc">A slow 3/4 dream waltz dancing on soft cotton-candy clouds.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Ambient Mixer Box -->
+          <div class="lullaby-box">
+            <div class="box-title-bar">
+              <div>
+                <h3>Ambient Nightscapes</h3>
+                <small style="color:var(--origin-muted,#94776e); font-size:0.75rem;">Layer gentle sounds with your lullaby</small>
+              </div>
+            </div>
+
+            <div class="ambient-tiles-grid">
+              <div class="ambient-tile" id="ambientRainTile">
+                <div class="ambient-top">
+                  <span class="amb-icon" aria-hidden="true">🌧️</span>
+                  <div class="amb-info">
+                    <span class="amb-name">Starlight Rain</span>
+                    <span class="amb-status">Gentle window patter</span>
+                  </div>
+                  <button type="button" class="amb-toggle-pill" data-ambient-key="rain">OFF</button>
+                </div>
+                <div class="amb-slider-row">
+                  <span class="amb-slider-label">Volume</span>
+                  <input type="range" class="amb-range" data-ambient-slider="rain" min="0" max="1" step="0.05" value="0.5" aria-label="Rain volume">
+                </div>
+              </div>
+
+              <div class="ambient-tile" id="ambientWindTile">
+                <div class="ambient-top">
+                  <span class="amb-icon" aria-hidden="true">🍃</span>
+                  <div class="amb-info">
+                    <span class="amb-name">Night Wind</span>
+                    <span class="amb-status">Soft cloud breeze</span>
+                  </div>
+                  <button type="button" class="amb-toggle-pill" data-ambient-key="wind">OFF</button>
+                </div>
+                <div class="amb-slider-row">
+                  <span class="amb-slider-label">Volume</span>
+                  <input type="range" class="amb-range" data-ambient-slider="wind" min="0" max="1" step="0.05" value="0.4" aria-label="Wind volume">
+                </div>
+              </div>
+
+              <div class="ambient-tile" id="ambientCricketsTile">
+                <div class="ambient-top">
+                  <span class="amb-icon" aria-hidden="true">🦗</span>
+                  <div class="amb-info">
+                    <span class="amb-name">Celestial Crickets</span>
+                    <span class="amb-status">Peaceful garden evening</span>
+                  </div>
+                  <button type="button" class="amb-toggle-pill" data-ambient-key="crickets">OFF</button>
+                </div>
+                <div class="amb-slider-row">
+                  <span class="amb-slider-label">Volume</span>
+                  <input type="range" class="amb-range" data-ambient-slider="crickets" min="0" max="1" step="0.05" value="0.45" aria-label="Crickets volume">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="project-feature-section section-shell section-block" id="nightlight-collection" data-task-detail="nightlights" aria-labelledby="nightlightTitle">
+      <div class="section-heading">
+        <p class="eyebrow">Project 02 · Nightlight Collection</p>
+        <h2 id="nightlightTitle">A glow that says <span>you’re safe</span></h2>
+        <p>Choose the little light that feels right for tonight.</p>
+      </div>
+      <div class="project-feature-card frosted-card nightlight-feature">
+        <div class="project-feature-art lantern-feature-art"><img src="assets/pip-lantern.webp" alt="Pip's glowing golden dream lantern" loading="lazy"></div>
+        <div class="project-feature-copy">
+          <p class="mini-label">A FRIENDLY LITTLE LIGHT</p>
+          <h3>Pick a cozy glow</h3>
+          <p>Pip’s nightlights are gentle enough for bedtime and bright enough to make a corner feel friendly.</p>
+          <div class="glow-choice-row" role="group" aria-label="Choose a nightlight color">
+            <button class="soft-button glow-choice" data-glow="gold" type="button" aria-pressed="true"><span class="glow-swatch honey"></span>Honey glow</button>
+            <button class="soft-button glow-choice" data-glow="pink" type="button" aria-pressed="false"><span class="glow-swatch peach"></span>Peach blush</button>
+            <button class="soft-button glow-choice" data-glow="mint" type="button" aria-pressed="false"><span class="glow-swatch mint"></span>Mint cloud</button>
+          </div>
+          <div class="lantern-preview" id="lanternPreview" data-glow="gold" aria-live="polite"><span>✧</span><small>Your little light</small></div>
+          <p class="toy-status">Tap a shade to change the lantern’s mood.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="toybox-section section-shell section-block" id="toybox" aria-labelledby="toyboxTitle">
+      <div class="section-heading">
+        <p class="eyebrow">A tiny corner for curious hands</p>
+        <h2 id="toyboxTitle">Pip's little <span>toybox</span></h2>
+        <p>Nothing to get wrong here. Just press, play, and see what happens.</p>
+      </div>
+      <div class="toybox-grid">
+        <div class="toy-card frosted-card bubble-toy"><div class="toy-visual" id="bubbleField" aria-label="Bubbles to pop"><button class="bubble bubble-a" aria-label="Pop a pink bubble" type="button"></button><button class="bubble bubble-b" aria-label="Pop a golden bubble" type="button"></button><button class="bubble bubble-c" aria-label="Pop a lilac bubble" type="button"></button><button class="bubble bubble-d" aria-label="Pop a mint bubble" type="button"></button></div><div class="toy-copy"><h3>Pop the dream bubbles</h3><p>Tap a bubble to send a tiny sparkle into the sky.</p><span class="toy-status" id="bubbleStatus" aria-live="polite">4 bubbles are floating</span></div></div>
+        <div class="toy-card frosted-card wish-toy"><div class="wish-illustration" aria-hidden="true"><span class="wish-cloud">☁</span><span class="wish-star">✦</span><span class="wish-heart">♡</span></div><div class="toy-copy"><h3>Leave Pip a little wish</h3><p>Your wish stays in this browser, like a note tucked under a pillow.</p><form id="wishForm" class="wish-form"><label class="visually-hidden" for="wishInput">Write a little wish</label><input id="wishInput" name="wish" maxlength="100" placeholder="I wish for…" required><button class="primary-button" type="submit">Tuck it in ♥</button></form><p id="wishStatus" class="toy-status" aria-live="polite"></p></div></div>
+        <!-- PROJECT: RATTLE & BLOCK TOYS -->
+<div
+  class="toy-card frosted-card block-toy-card"
+  id="rattleBlockPlay"
+  data-task-detail="toys"
+>
+  <div
+    class="block-play-visual"
+    id="blockPlayVisual"
+  >
+
+    <!-- THE TOWER -->
+    <div class="block-stack-area">
+      <p class="stack-label">YOUR DREAM TOWER</p>
+
+      <div
+        class="block-tower"
+        id="blockTower"
+        aria-label="Empty tower"
+      >
+        <span
+          class="tower-placeholder"
+          id="towerPlaceholder"
+        >
+          Pick a block to begin ✦
+        </span>
+      </div>
+
+      <span
+        class="block-tower-base"
+        aria-hidden="true"
+      ></span>
+    </div>
+
+    <!-- BLOCK COLLECTION -->
+    <div
+      class="block-palette"
+      role="group"
+      aria-label="Choose a block to add to your tower"
+    >
+      <button
+        class="play-block play-block-pink"
+        type="button"
+        data-block="pink"
+        data-symbol="♥"
+        aria-label="Add pink heart block"
+      >♥</button>
+
+      <button
+        class="play-block play-block-gold"
+        type="button"
+        data-block="gold"
+        data-symbol="★"
+        aria-label="Add golden star block"
+      >★</button>
+
+      <button
+        class="play-block play-block-lilac"
+        type="button"
+        data-block="lilac"
+        data-symbol="☁"
+        aria-label="Add lilac cloud block"
+      >☁</button>
+
+      <button
+        class="play-block play-block-mint"
+        type="button"
+        data-block="mint"
+        data-symbol="✦"
+        aria-label="Add mint star block"
+      >✦</button>
+    </div>
+
+  </div>
+
+  <!-- GAME CONTROLS -->
+  <div class="toy-copy">
+    <h3>Rattle &amp; Stack</h3>
+
+    <p>
+      Welcome to Pip's little toy workshop!
+      Choose your favorite blocks and stack four
+      of them to build a dream tower.
+    </p>
+
+    <div class="block-game-actions">
+
+      <button
+        class="soft-button"
+        id="resetBlockTower"
+        type="button"
+      >
+        ↻ Start over
+      </button>
+
+      <button
+        class="toy-rattle"
+        id="shakeRattle"
+        type="button"
+        aria-pressed="false"
+        aria-label="Shake Pip's rattle"
+        title="Shake Pip's rattle"
+      >
+        <span class="rattle-ring"></span>
+        <span class="rattle-handle"></span>
+      </button>
+
+      <span class="rattle-label">
+        Shake the rattle!
+      </span>
+
+    </div>
+
+    <p
+      class="toy-status"
+      id="blockStatus"
+      aria-live="polite"
+    >
+      Choose four colorful blocks to build your tower.
+    </p>
+
+  </div>
+</div>
+      </div>
+    </section>
+    
+    <section
+  class="origin-scroll-story section-shell section-block"
+  id="pip-origin-story"
+  data-task-detail="storybook"
+  aria-labelledby="originStoryTitle"
+>
+  <header class="origin-story-heading">
+    <p class="eyebrow">A little journey through dreamland</p>
+    <h2 id="originStoryTitle">How Pip became <span>a dream engineer</span></h2>
+    <p>Scroll through five little chapters. Tap a picture to make it bigger and read the full story.</p>
+  </header>
+
+  <div class="origin-story-progress-area">
+    <div class="origin-story-progress-label">
+      <span id="originStoryProgressLabel">Chapter 1 of 5</span>
+      <span>Follow the stars ↓</span>
+    </div>
+    <div class="origin-story-progress-track" id="originStoryProgressTrack" role="progressbar" aria-label="Origin story reading progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+      <span id="originStoryProgressFill"></span>
+    </div>
+  </div>
+
+  <nav class="origin-chapter-nav" aria-label="Jump to an origin story chapter">
+    <a href="#originChapter01" class="origin-chapter-pill is-active" data-origin-jump="0"><strong>01</strong><span>Arrival</span></a>
+    <a href="#originChapter02" class="origin-chapter-pill" data-origin-jump="1"><strong>02</strong><span>Pip</span></a>
+    <a href="#originChapter03" class="origin-chapter-pill" data-origin-jump="2"><strong>03</strong><span>Dreams</span></a>
+    <a href="#originChapter04" class="origin-chapter-pill" data-origin-jump="3"><strong>04</strong><span>Inventions</span></a>
+    <a href="#originChapter05" class="origin-chapter-pill" data-origin-jump="4"><strong>05</strong><span>Engineer</span></a>
+  </nav>
+
+  <div class="origin-chapter-list" id="originChapterList">
+    <!-- Chapter 1 -->
+    <article class="origin-chapter origin-chapter-left is-visible" id="originChapter01" data-origin-chapter="0">
+      <div class="origin-chapter-art origin-art-nursery">
+        <span class="origin-art-label">A LITTLE BEGINNING</span>
+        <button class="origin-scene-image" type="button" data-origin-open="0" aria-haspopup="dialog" aria-label="Open a larger picture and read chapter one: The Nursery at Sleepy Sky">
+          <img src="assets/origin-story/pip-origin-01-nursery.webp" alt="Midnight Nursery under the moon, with a magical music box playing a golden lullaby" loading="lazy">
+          <span class="origin-image-prompt">Tap to peek inside ↗</span>
+        </button>
+        <button class="origin-wish-button" type="button" data-origin-sparkle="0" aria-label="Make a tiny star sparkle in chapter one">✦</button>
+      </div>
+      <div class="origin-chapter-copy">
+        <p class="origin-chapter-kicker">CHAPTER 01 · THE BEGINNING</p>
+        <h3>The Nursery at Sleepy Sky</h3>
+        <p>Long ago, at the far corner of Sleepy Sky, stood Midnight Nursery, where unfinished dreams floated like bubbles, waiting to be made real. In its quietest room sat an old music box—until one night, a forgotten lullaby escaped and drifted toward the moon.</p>
+        <button class="origin-read-button" type="button" data-origin-open="0">Read this chapter <span aria-hidden="true">↗</span></button>
+        <a class="origin-next-hint" href="#originChapter02">Follow the melody <span aria-hidden="true">↓</span></a>
+      </div>
+    </article>
+
+    <!-- Chapter 2 -->
+    <article class="origin-chapter origin-chapter-right" id="originChapter02" data-origin-chapter="1">
+      <div class="origin-chapter-art origin-art-cradle">
+        <span class="origin-art-label">A TINY MYSTERY</span>
+        <button class="origin-scene-image" type="button" data-origin-open="1" aria-haspopup="dialog" aria-label="Open a larger picture and read chapter two: The Star in the Cradle">
+          <img src="assets/origin-story/pip-origin-02-star-cradle.webp" alt="Tiny Pip resting in a starry cloud cradle while nursery friends look on" loading="lazy">
+          <span class="origin-image-prompt">Tap to peek inside ↗</span>
+        </button>
+        <button class="origin-wish-button" type="button" data-origin-sparkle="1" aria-label="Make a tiny star sparkle in chapter two">✦</button>
+      </div>
+      <div class="origin-chapter-copy">
+        <p class="origin-chapter-kicker">CHAPTER 02 · A NEW FRIEND</p>
+        <h3>The Star in the Cradle</h3>
+        <p>The tiny star followed the music to a cradle resting on a cloud and curled up inside. By morning, a baby with a round skull face, glowing eyes, a crooked smile, and a starry cap with a pink bow lay there. The creatures welcomed him and named him Pip.</p>
+        <button class="origin-read-button" type="button" data-origin-open="1">Read this chapter <span aria-hidden="true">↗</span></button>
+        <a class="origin-next-hint" href="#originChapter03">Hear a little secret <span aria-hidden="true">↓</span></a>
+      </div>
+    </article>
+
+    <!-- Chapter 3 -->
+    <article class="origin-chapter origin-chapter-left" id="originChapter03" data-origin-chapter="2">
+      <div class="origin-chapter-art origin-art-dreams">
+        <span class="origin-art-label">A VERY SPECIAL GIFT</span>
+        <button class="origin-scene-image" type="button" data-origin-open="2" aria-haspopup="dialog" aria-label="Open a larger picture and read chapter three: The Baby Who Could Hear Dreams">
+          <img src="assets/origin-story/pip-origin-03-hears-dreams.webp" alt="Pip listening to glowing dream bubbles filled with little adventures" loading="lazy">
+          <span class="origin-image-prompt">Tap to peek inside ↗</span>
+        </button>
+        <button class="origin-wish-button" type="button" data-origin-sparkle="2" aria-label="Make a tiny star sparkle in chapter three">✦</button>
+      </div>
+      <div class="origin-chapter-copy">
+        <p class="origin-chapter-kicker">CHAPTER 03 · DISCOVERY</p>
+        <h3>The Baby Who Could Hear Dreams</h3>
+        <p>Pip soon discovered that he could hear the quiet melodies hiding inside sleeping creatures' dreams: a lighthouse for a lonely ghost, a moon-run for a little fox, and a garden for a homesick cat. His first humming attempts sent notes bouncing and stars spinning—but when he found the right tune, a sleeper smiled.</p>
+        <button class="origin-read-button" type="button" data-origin-open="2">Read this chapter <span aria-hidden="true">↗</span></button>
+        <a class="origin-next-hint" href="#originChapter04">See what Pip makes <span aria-hidden="true">↓</span></a>
+      </div>
+    </article>
+
+    <!-- Chapter 4 -->
+    <article class="origin-chapter origin-chapter-right" id="originChapter04" data-origin-chapter="3">
+      <div class="origin-chapter-art origin-art-workshop">
+        <span class="origin-art-label">MADE WITH A LITTLE MAGIC</span>
+        <button class="origin-scene-image" type="button" data-origin-open="3" aria-haspopup="dialog" aria-label="Open a larger picture and read chapter four: Tiny Inventions, Big Comfort">
+          <img src="assets/origin-story/pip-origin-04-inventions.webp" alt="Pip's warm workshop with a glowing lantern, toys, and floating stars" loading="lazy">
+          <span class="origin-image-prompt">Tap to peek inside ↗</span>
+        </button>
+        <button class="origin-wish-button" type="button" data-origin-sparkle="3" aria-label="Make a tiny star sparkle in chapter four">✦</button>
+      </div>
+      <div class="origin-chapter-copy">
+        <p class="origin-chapter-kicker">CHAPTER 04 · LITTLE INVENTIONS</p>
+        <h3>Tiny Inventions, Big Comfort</h3>
+        <p>Pip wanted to do more than listen. He made a music box for gentle lullabies, golden nightlights to turn scary shadows into friendly stars, and rattles and blocks for a cloud-bunny who needed a playmate. Soon, the mouse felt safe, the bunny was giggling, and Pip's workshop brimmed with tiny inventions.</p>
+        <button class="origin-read-button" type="button" data-origin-open="3">Read this chapter <span aria-hidden="true">↗</span></button>
+        <a class="origin-next-hint" href="#originChapter05">Turn one more page <span aria-hidden="true">↓</span></a>
+      </div>
+    </article>
+
+    <!-- Chapter 5 -->
+    <article class="origin-chapter origin-chapter-left" id="originChapter05" data-origin-chapter="4">
+      <div class="origin-chapter-art origin-art-engineer">
+        <span class="origin-art-label">A DREAM TAKES SHAPE</span>
+        <button class="origin-scene-image" type="button" data-origin-open="4" aria-haspopup="dialog" aria-label="Open a larger picture and read chapter five: The Little Dream Engineer">
+          <img src="assets/origin-story/pip-origin-05-dream-engineer.webp" alt="Pip reading a magical bedtime story with the nursery's wise owl" loading="lazy">
+          <span class="origin-image-prompt">Tap to peek inside ↗</span>
+        </button>
+        <button class="origin-wish-button" type="button" data-origin-sparkle="4" aria-label="Make a tiny star sparkle in chapter five">✦</button>
+      </div>
+      <div class="origin-chapter-copy">
+        <p class="origin-chapter-kicker">CHAPTER 05 · PIP'S PURPOSE</p>
+        <h3>The Little Dream Engineer</h3>
+        <p>When a little creature wished to dream of somewhere new, Pip drew moonlit forests, sleepy oceans, friendly dragons, and castles among the clouds. He turned them into a bedtime storybook. The nursery keeper gave Pip a tiny engineer's badge. From then on, Pip became the Junior Dream Engineer at Midnight Nursery.</p>
+        <button class="origin-read-button" type="button" data-origin-open="4">Read this chapter <span aria-hidden="true">↗</span></button>
+        <a class="origin-next-hint" href="#originStoryTitle">Begin the journey again <span aria-hidden="true">↑</span></a>
+      </div>
+    </article>
+  </div>
+
+  <p class="origin-story-status" id="originStoryStatus" aria-live="polite">Tap a little star for a sprinkle of magic.</p>
+</section>
+<section class="goodnight-section section-shell">
+      <div class="goodnight-card">
+        <div class="goodnight-stars" aria-hidden="true"><span>✦</span><span>✧</span><span>✦</span></div>
+        <p class="mini-label">A LITTLE NOTE FROM PIP</p>
+        <h2>Big dreams can start <span>small.</span></h2>
+        <p>Thanks for visiting my tiny corner of the night sky. May your next dream be a kind one.</p>
+        <a class="primary-button" href="#home">Back to the cloud <span aria-hidden="true">↑</span></a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer section-shell">
+    <a class="footer-brand" href="#home">Pip <span>♥</span></a>
+    <p>Made Softly at Midnight Nursery.</p>
+    <span class="secret-heart footer-heart" aria-hidden="true">♡</span>
+  </footer>
+  
+<!-- Large view opens when a story image is clicked -->
+<dialog class="origin-story-dialog" id="originStoryDialog" aria-labelledby="originDialogTitle" aria-describedby="originDialogText">
+  <div class="origin-dialog-layout">
+    <button class="origin-dialog-close" id="originDialogClose" type="button" aria-label="Close story">×</button>
+    <div class="origin-dialog-art" id="originDialogArt">
+      <img id="originDialogImage" src="assets/origin-story/pip-origin-01-nursery.webp" alt="">
+      <span class="origin-dialog-art-caption" id="originDialogCaption">A little magic begins</span>
+    </div>
+    <div class="origin-dialog-copy">
+      <p class="mini-label" id="originDialogEyebrow">CHAPTER 01</p>
+      <p class="origin-dialog-count" id="originDialogCount">SCENE 01 / 05</p>
+      <h2 id="originDialogTitle">The Nursery at Sleepy Sky</h2>
+      <div class="origin-dialog-text" id="originDialogText"></div>
+      <div class="origin-dialog-actions">
+        <button class="soft-button" id="originDialogPrev" type="button" disabled>← Previous</button>
+        <button class="primary-button" id="originDialogNext" type="button">Next scene →</button>
+      </div>
+      <button class="origin-dialog-done" id="originDialogDone" type="button">Back to the story ♥</button>
+    </div>
+  </div>
+</dialog>
+</main>
+<a class="back-to-top" id="backToTop" href="#pageTop" aria-label="Back to the start of Pip's Dream World" title="Back to top"><span aria-hidden="true">↑</span><small>Top</small></a>
+
+  <button class="egg-teaser" id="eggTeaser" type="button" aria-label="Click to open a hidden decorated egg" aria-live="polite" hidden>
+    <span class="egg-teaser-visual" id="eggTeaserVisual" aria-hidden="true"></span>
+    <span class="egg-teaser-label" id="eggTeaserLabel">Click to open</span>
+  </button>
+  <div class="egg-reward-overlay" id="eggRewardOverlay" hidden>
+    <div class="egg-reward-dialog" role="dialog" aria-modal="true" aria-labelledby="eggRewardTitle" aria-describedby="eggThanks">
+      <p class="mini-label">A LITTLE SURPRISE FOR YOU</p>
+      <h2 id="eggRewardTitle">You found the dream egg!</h2>
+      <div class="egg-reward-art" id="eggRewardArt" aria-hidden="true">
+        <div class="egg-shell-half egg-shell-top" id="eggShellTop"></div>
+        <div class="egg-shell-half egg-shell-bottom" id="eggShellBottom"></div>
+        <div class="egg-reward-glow" aria-hidden="true">✦　♡　✧</div>
+      </div>
+      <p class="egg-reward-inside" id="eggRewardInside">A pocketful of tiny magic, just for you.</p>
+      <p class="egg-thanks" id="eggThanks">Thank you for exploring Pip’s Dream World!</p>
+      <button class="primary-button" id="eggRewardClose" type="button">Back to the dream world ♥</button>
+    </div>
+  </div>
+
+
+  <!-- Pip's Bedtime Storybook: random story popup -->
+  <dialog class="bedtime-story-dialog" id="bedtimeStoryDialog" aria-labelledby="bedtimeStoryTitle" aria-describedby="bedtimeStoryText">
+    <div class="bedtime-story-modal">
+      <div class="bedtime-story-header">
+        <div>
+          <p class="mini-label">PIP'S LITTLE STORYBOOK</p>
+          <p class="bedtime-story-subtitle">A little story for sleepy eyes</p>
+        </div>
+        <button class="bedtime-close" id="closeBedtimeStory" type="button" aria-label="Close bedtime story">&times;</button>
+      </div>
+
+      <div class="bedtime-story-art" aria-hidden="true">
+        <span class="bedtime-art-cloud">☁</span>
+        <span class="bedtime-art-star star-one">✦</span>
+        <span class="bedtime-art-star star-two">✧</span>
+        <span class="bedtime-art-moon">☾</span>
+        <span class="bedtime-art-heart">♡</span>
+      </div>
+
+      <div class="bedtime-story-content">
+        <p class="mini-label">TONIGHT'S LITTLE ADVENTURE</p>
+        <h2 id="bedtimeStoryTitle">The Sleepy Firefly</h2>
+        <p id="bedtimeStoryText" class="bedtime-story-text">Once upon a time, a little firefly discovered that even the tiniest light could make the night feel wonderful.</p>
+        <p id="bedtimeStoryNumber" class="bedtime-story-number" aria-live="polite">A little surprise from Pip</p>
+      </div>
+
+      <div class="bedtime-story-actions">
+        <button class="soft-button" id="anotherBedtimeStory" type="button">✦ Another story</button>
+        <button class="primary-button" id="finishBedtimeStory" type="button">All tucked in ♥</button>
+      </div>
+      <p class="bedtime-story-footer">Sweet dreams, little dreamer.</p>
+    </div>
+  </dialog>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  
+  <div class="sparkle-layer" id="sparkleLayer" aria-hidden="true"></div>
+  
+
+
+</body>
+</html>
